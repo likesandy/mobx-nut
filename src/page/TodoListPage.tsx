@@ -1,8 +1,9 @@
+import { observer } from 'mobx-react-lite'
 import { memo } from 'react'
+import { Observer } from '../nut-mox-react-lite'
 import todoStore, { Todo } from '../store/TodoStore'
-import { observer } from '../nut-mox-react-lite'
 
-const TodoView = observer(({ todo, index }: { todo: Todo; index: number }) => {
+const TodoView = ({ todo, index }: { todo: Todo; index: number }) => {
   return (
     <>
       <li
@@ -13,16 +14,24 @@ const TodoView = observer(({ todo, index }: { todo: Todo; index: number }) => {
           })
         }
       >
-        <input
-          type="checkbox"
-          checked={todo.completed}
-          onChange={() => todoStore.editorTodo(index, { ...todo, completed: !todo.completed })}
-        />
-        {todo.task}
+        <Observer>
+          {() => (
+            <>
+              <input
+                type="checkbox"
+                checked={todo.completed}
+                onChange={() =>
+                  todoStore.editorTodo(index, { ...todo, completed: !todo.completed })
+                }
+              />
+              {todo.task}
+            </>
+          )}
+        </Observer>
       </li>
     </>
   )
-})
+}
 
 const TodoListPage = memo(
   observer(() => {

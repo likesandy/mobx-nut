@@ -1,13 +1,16 @@
-import CounterPage from "./page/CounterPage";
-import TodoListPage from "./page/TodoListPage";
+import CounterPage from './page/CounterPage'
+import TimerPage from './page/TimerPage'
+import TodoListPage from './page/TodoListPage'
 
 function App() {
   return (
     <>
-      {/* <CounterPage /> */}
+      <CounterPage />
       <TodoListPage />
+      <TimerPage />
     </>
-  );
+  )
 }
 
-export default App;
+export default App
+
